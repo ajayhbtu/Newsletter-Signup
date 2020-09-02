@@ -11,8 +11,8 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-const listId = config.LIST_ID;
-const apiKey = config.API_KEY;
+const listId = process.env.LIST_ID || config.LIST_ID;
+const apiKey = process.env.API_KEY || config.API_KEY;
 
 app.get("/", function (req, res){
   res.sendFile(__dirname + "/signup.html");
@@ -66,5 +66,5 @@ app.post('/failure', function(req, res) {
 });
 
 app.listen(process.env.PORT || 3000, function() {
-  console.log("Server is Running!");
+  console.log("Server is Running on port 3000.");
 });
